@@ -44,9 +44,23 @@ height_label_setup()
 height_entry = Entry(width=10)
 height_entry.pack()
 
+
+# calculate function
+
+
+def calculate():
+
+    w = int(weight_entry.get())
+    h = int(height_entry.get())
+    BMI = w / ((h/100)**2)
+    print(BMI)
+
+
 # calculate button setup
 
-calculate_button = Button(text="Calculate")
+
+calculate_button = Button(text="Calculate", command=calculate)
+calculate_button.config(bg="white")
 calculate_button.pack()
 
 window_setup()
