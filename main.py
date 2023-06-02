@@ -29,6 +29,7 @@ weight_entry.pack()
 weight_entry.focus()
 
 # height label setup
+
 height_label = Label(text="Enter Your Height(cm)")
 
 
@@ -41,42 +42,57 @@ def height_label_setup():
 height_label_setup()
 
 # height entry setup
+
 height_entry = Entry(width=10)
 height_entry.pack()
 
 
+
 # calculate and error check function
+
+result = StringVar()
 
 
 def calculate():
-    while True:
-        try:
-            w = int(weight_entry.get())
-            h = int(height_entry.get())
-            BMI = w / ((h/100)**2)
-            print(BMI)
+    try:
+        w = int(weight_entry.get())
+        h = int(height_entry.get())
+        BMI = w / ((h/100)**2)
+        print(BMI)
 
-            if 18.5 <= BMI < 25:
-                print("Normal")
-            elif 25 <= BMI < 30:
-                print("Overweight")
-            elif 30 <= BMI < 40:
-                print("Obese")
-            elif 40 <= BMI :
-                print("Morbidly Obese")
-
-            break
-
-        except:
-            print("please check your entry.")
-            break
+        if BMI < 18.5:
+            result.set("Underweight")
+            print("Underweight")
+        elif 18.5 <= BMI < 25:
+            result.set("Normal")
+            print("Normal")
+        elif 25 <= BMI < 30:
+            result.set("Overweight")
+            print("Overweight")
+        elif 30 <= BMI < 40:
+            result.set("Obese")
+            print("Obese")
+        elif 40 <= BMI :
+            result.set("Morbidly obese")
+            print("Morbidly Obese")
+    except:
+        result.set("check your entry.")
+        print("check your entry.")
 
 
 # calculate button setup
 
+
 calculate_button = Button(text="Calculate", command=calculate)
 calculate_button.config(bg="white")
 calculate_button.pack()
+
+
+# result label setup
+
+result_label = Label(textvariable=result, font=["Arial", 11, "normal"])
+result_label.config(padx=10, pady=10)
+result_label.pack()
 
 
 window_setup()
