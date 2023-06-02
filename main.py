@@ -45,25 +45,39 @@ height_entry = Entry(width=10)
 height_entry.pack()
 
 
-# calculate function
+# calculate and error check function
 
 
 def calculate():
+    while True:
+        try:
+            w = int(weight_entry.get())
+            h = int(height_entry.get())
+            BMI = w / ((h/100)**2)
+            print(BMI)
 
-    w = int(weight_entry.get())
-    h = int(height_entry.get())
-    BMI = w / ((h/100)**2)
-    print(BMI)
+            if 18.5 <= BMI < 25:
+                print("Normal")
+            elif 25 <= BMI < 30:
+                print("Overweight")
+            elif 30 <= BMI < 40:
+                print("Obese")
+            elif 40 <= BMI :
+                print("Morbidly Obese")
+
+            break
+
+        except:
+            print("please check your entry.")
+            break
 
 
 # calculate button setup
-
 
 calculate_button = Button(text="Calculate", command=calculate)
 calculate_button.config(bg="white")
 calculate_button.pack()
 
+
 window_setup()
-
-
 my_window.mainloop()
